@@ -22,6 +22,9 @@ resource "aws_instance" "web" {
   ami = data.aws_ami.apache.id
   instance_type = "t2.micro"
   subnet_id = aws_subnet.frontend.id
+  metadata_options {
+    http_tokens = "required"
+  }
 }
 resource "aws_subnet" "frontend" {
   vpc_id = aws_vpc.apps.id
